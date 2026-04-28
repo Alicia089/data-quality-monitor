@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "documentation_saved",
+  "type": "object",
+  "required": ["event_name", "user_id", "user_role", "session_id", "occurred_at", "properties"],
+  "additionalProperties": false,
+  "properties": {
+    "event_name": { "type": "string", "const": "documentation_saved" },
+    "user_id":    { "type": "string", "minLength": 1 },
+    "user_role":  { "type": "string", "enum": ["clinician", "patient", "admin"] },
+    "session_id": { "type": "string", "minLength": 1 },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "properties": {
+      "type": "object",
+      "required": ["note_id", "note_type", "patient_id"],
+      "properties": {
+        "note_id":    { "type": "string", "minLength": 1 },
+        "note_type":  { "type": "string", "enum": ["progress_note", "assessment_note", "discharge_note"] },
+        "patient_id": { "type": "string", "minLength": 1 },
+        "word_count": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

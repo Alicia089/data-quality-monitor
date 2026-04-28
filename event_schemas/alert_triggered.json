@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "alert_triggered",
+  "type": "object",
+  "required": ["event_name", "user_id", "user_role", "session_id", "occurred_at", "properties"],
+  "additionalProperties": false,
+  "properties": {
+    "event_name": { "type": "string", "const": "alert_triggered" },
+    "user_id":    { "type": "string", "minLength": 1 },
+    "user_role":  { "type": "string", "enum": ["clinician", "patient", "admin"] },
+    "session_id": { "type": "string", "minLength": 1 },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "properties": {
+      "type": "object",
+      "required": ["alert_id", "severity", "patient_id"],
+      "properties": {
+        "alert_id":   { "type": "string", "minLength": 1 },
+        "severity":   { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "patient_id": { "type": "string", "minLength": 1 },
+        "risk_score": { "type": "number", "minimum": 0, "maximum": 100 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

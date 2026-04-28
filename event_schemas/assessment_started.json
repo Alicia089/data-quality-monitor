@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "assessment_started",
+  "type": "object",
+  "required": ["event_name", "user_id", "user_role", "session_id", "occurred_at", "properties"],
+  "additionalProperties": false,
+  "properties": {
+    "event_name": { "type": "string", "const": "assessment_started" },
+    "user_id":    { "type": "string", "minLength": 1 },
+    "user_role":  { "type": "string", "enum": ["clinician", "patient", "admin"] },
+    "session_id": { "type": "string", "minLength": 1 },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "properties": {
+      "type": "object",
+      "required": ["patient_id", "form_version"],
+      "properties": {
+        "patient_id":   { "type": "string", "minLength": 1 },
+        "form_version": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+        "referral_id":  { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

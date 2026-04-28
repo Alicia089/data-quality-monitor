@@ -1,0 +1,17 @@
+{
+  "name": "data-quality-monitor",
+  "version": "1.0.0",
+  "description": "Automated validation pipeline for clinical analytics event schema compliance and anomaly detection",
+  "main": "server/monitor.js",
+  "scripts": {
+    "start": "node server/monitor.js",
+    "dev": "node --watch server/monitor.js"
+  },
+  "dependencies": {
+    "fastify": "^4.27.0",
+    "pg": "^8.11.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
