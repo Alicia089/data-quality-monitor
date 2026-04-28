@@ -63,7 +63,7 @@ app.get('/runs/summary', async (_request, reply) => {
 
 function runPipeline(source, events) {
   return new Promise((resolve, reject) => {
-    const scriptPath = path.join(__dirname, '..', 'python', 'pipeline.py')
+    const scriptPath = path.join(__dirname, '..', 'python', 'pipeline_stdin.py')
     const input = JSON.stringify({ source, events })
 
     const child = execFile('python', [scriptPath], { env: process.env }, (err, stdout, stderr) => {
